@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources: 
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties: 
+      AvailabilityZone: ap-south-1a
+      ImageId: ami-0da59f1af71ea4ad2
+      InstanceType: t2.micro
+  MyEBSVolume:
+    Type: AWS::EC2::Volume
+    Properties:
+      AvailabilityZone: !GetAtt MyEC2Instance.AvailabilityZone
+      VolumeType: gp2
+      Size: 10
+  MountPoint:
+    Type: AWS::EC2::VolumeAttachment
+    Properties: 
+      Device: /dev/sdh
+      InstanceId: 
+        Ref: MyEC2Instance
+      VolumeId:
+        Ref: MyEBSVolume
+
+
+      
+
+  

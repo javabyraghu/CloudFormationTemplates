@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an S3 bucket with versioning enabled
+Resources:
+  MyBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: second-sample-bucket-name
+      VersioningConfiguration:
+        Status: Enabled
+      WebsiteConfiguration:
+        IndexDocument: index.html
+Outputs:
+ WebsiteURL:
+   Description: URL of static website
+   Value: !GetAtt MyBucket.WebsiteURL
